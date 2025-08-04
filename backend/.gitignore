@@ -1,33 +1,52 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+##############################################
+#  🧠 General
+##############################################
+.DS_Store
+Thumbs.db
+*.log
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+##############################################
+#  🧰 IDEs and Editors
+##############################################
+# IntelliJ IDEA
+.idea/
 *.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# VS Code
 .vscode/
+
+##############################################
+#  🚀 Frontend (Next.js + Node.js)
+##############################################
+frontend/node_modules/
+frontend/.next/
+frontend/.env
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+frontend/out/         # Next.js 静态导出文件夹（仅在静态部署时）
+
+##############################################
+#  ☕️ Backend (Spring Boot with Maven)
+##############################################
+backend/target/
+backend/.env
+backend/.env.local
+backend/.env.development
+backend/.env.production
+
+##############################################
+#  🐳 Docker (if used)
+##############################################
+*.pid
+*.tar
+*.log
+docker-compose.override.yml
+
+##############################################
+#  🔒 Sensitive
+##############################################
+.env
+.env.*
+*.key
+*.pem
