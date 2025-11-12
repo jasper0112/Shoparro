@@ -12,7 +12,7 @@ This is a web application for e-commerce platform using by small or medium size 
 |-----------|-----------------------------------|
 | Frontend  | [Next.js](https://nextjs.org/) (App Router, TypeScript) |
 | Backend   | [Spring Boot](https://spring.io/projects/spring-boot) (REST API) |
-| Database  | [PostgreSQL](https://www.postgresql.org/) |
+| Database  | [阿里云 MySQL](https://www.aliyun.com/product/rds/mysql) |
 | Cache     | [Redis](https://redis.io/) *(optional)* |
 | Storage   | AWS S3 or Azure Blob *(for product images)* |
 | DevOps    | Docker, GitHub Actions *(optional)* |
@@ -60,7 +60,7 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
-> Ensure PostgreSQL is running, and update credentials in `application.yml`.
+> Ensure 阿里云 MySQL is configured, and update credentials in `application.yml`.
 
 ---
 
@@ -97,7 +97,7 @@ shoparro/
 
 * **Frontend**: [Vercel](https://vercel.com/) or Netlify
 * **Backend**: [Render](https://render.com/), Railway, or AWS EC2
-* **Database**: Hosted PostgreSQL (Supabase, Render, RDS)
+* **Database**: 阿里云 MySQL (RDS)
 * **Storage**: AWS S3 or Azure Blob for media
 
 ---

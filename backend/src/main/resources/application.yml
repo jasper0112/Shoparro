@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: shoparro-backend
+  
+  # 阿里云 MySQL 数据库配置
+  datasource:
+    url: jdbc:mysql://47.107.131.134:3306/shoparro?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:jfq123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # 连接池配置（针对阿里云 RDS 优化）
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  
+  # JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: update  # 开发环境使用 update，生产环境建议使用 validate 或 none
+    show-sql: true      # 开发环境显示 SQL，生产环境设为 false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        use_sql_comments: true
+    open-in-view: false
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.shoparro: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# JWT 配置
+jwt:
+  secret: ${JWT_SECRET:your-secret-key-change-this-in-production-min-256-bits}
+  expiration: 86400000  # 24 hours in milliseconds
+
+# 应用配置
+app:
+  name: Shoparro
+  version: 1.0.0
+  cors:
+    allowed-origins: 
+      - http://localhost:3000
+      - http://localhost:3001
+    allowed-methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+    allowed-headers:
+      - "*"
+    allow-credentials: true
+
