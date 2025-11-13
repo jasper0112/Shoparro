@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import ProductCard from '@/components/ProductCard'
 import Carousel from '@/components/Carousel'
@@ -180,6 +181,9 @@ export default function Home() {
             <p className={styles.subtitle}>
               Discover quality products and enjoy shopping
             </p>
+            <Link href="/profile" className={styles.profileCta} aria-label="Open profile">
+              <img src="/user_male.png" alt="User profile" />
+            </Link>
           </div>
 
           {isReady && <Carousel />}

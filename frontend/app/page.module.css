@@ -15,9 +15,30 @@
   margin-bottom: 48px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 40px;
+.profileCta {
+  position: fixed;
+  top: 110px;
+  right: 40px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profileCta img {
+  width: 36px;
+  height: 36px;
+}
+
+.profileCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(102, 126, 234, 0.4);
 }
 
 .title {
@@ -307,6 +328,18 @@
 }
 
 @media (max-width: 768px) {
+  .profileCta {
+    top: 90px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .profileCta img {
+    width: 30px;
+    height: 30px;
+  }
+
   .title {
     font-size: 28px;
   }

@@ -6,11 +6,9 @@ import styles from './Carousel.module.css'
 
 interface Slide {
   id: number
-  title: string
-  description: string
-  image?: string
-  link?: string
-  buttonText?: string
+  image: string
+  link: string
+  ariaLabel: string
 }
 
 interface CarouselProps {
@@ -22,48 +20,40 @@ interface CarouselProps {
 const defaultSlides: Slide[] = [
   {
     id: 1,
-    title: 'New Arrivals',
-    description: 'Explore the latest curated products with limited-time offers',
-    buttonText: 'Shop Now',
+    image: '/p1.png',
     link: '/products',
+    ariaLabel: 'Discover featured collection',
   },
   {
     id: 2,
-    title: 'Limited-Time Deals',
-    description:
-      "Enjoy exceptional discounts across the store - don't miss out on the savings",
-    buttonText: 'View Details',
+    image: '/p2.png',
     link: '/products',
+    ariaLabel: 'Browse latest arrivals',
   },
   {
     id: 3,
-    title: 'Quality Guaranteed',
-    description:
-      'Handpicked premium goods to deliver the best shopping experience',
-    buttonText: 'Start Shopping',
+    image: '/p3.png',
     link: '/products',
+    ariaLabel: 'Explore trending picks',
   },
   {
     id: 4,
-    title: 'Members Only',
-    description: 'Join now to unlock exclusive perks and reward points',
-    buttonText: 'Join Now',
-    link: '/register',
+    image: '/p4.png',
+    link: '/products',
+    ariaLabel: 'See curated essentials',
   },
   {
     id: 5,
-    title: 'Fast Delivery',
-    description:
-      'Nationwide shipping with speedy delivery for a smoother experience',
-    buttonText: 'Order Now',
+    image: '/p5.png',
     link: '/products',
+    ariaLabel: 'Shop seasonal offers',
   },
 ]
 
 export default function Carousel({
   slides = defaultSlides,
   autoPlay = true,
-  interval = 5000,
+  interval = 2500,
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
@@ -100,27 +90,19 @@ export default function Carousel({
     >
       <div className={styles.slidesContainer}>
         {slides.map((slide, index) => (
-          <div
+          <Link
             key={slide.id}
+            href={slide.link}
+            aria-label={slide.ariaLabel}
             className={`${styles.slide} ${
               index === currentIndex ? styles.active : ''
             }`}
             style={{
-              backgroundImage: slide.image
-                ? `url(${slide.image})`
-                : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              backgroundImage: `url(${slide.image})`,
             }}
           >
-            <div className={styles.slideContent}>
-              <h2 className={styles.slideTitle}>{slide.title}</h2>
-              <p className={styles.slideDescription}>{slide.description}</p>
-              {slide.link && (
-                <Link href={slide.link} className={styles.slideButton}>
-                  {slide.buttonText || 'Learn More'}
-                </Link>
-              )}
-            </div>
-          </div>
+            <span className={styles.visuallyHidden}>{slide.ariaLabel}</span>
+          </Link>
         ))}
       </div>
 
