@@ -27,13 +27,13 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          🛒 Shoparro
+          🛒 Southside Cart
         </Link>
 
         <div className={styles.search}>
           <input
             type="text"
-            placeholder="搜索产品..."
+            placeholder="Search products..."
             className={styles.searchInput}
           />
           <button className={styles.searchButton}>🔍</button>
@@ -54,32 +54,32 @@ export default function Navbar() {
                   {isMenuOpen && (
                     <div className={styles.dropdown}>
                       <Link href="/profile" className={styles.menuItem}>
-                        个人资料
+                        Profile
                       </Link>
                       <Link href="/orders" className={styles.menuItem}>
-                        我的订单
+                        My orders
                       </Link>
                       <button
                         onClick={handleLogout}
                         className={styles.menuItem}
                       >
-                        登出
+                        Sign out
                       </button>
                     </div>
                   )}
                 </div>
               </div>
               <Link href="/cart" className={styles.cartButton}>
-                🛒 购物车
+                🛒 Cart
               </Link>
             </>
           ) : (
             <div className={styles.authButtons}>
               <Link href="/login" className={styles.loginButton}>
-                登录
+                Sign In
               </Link>
               <Link href="/register" className={styles.registerButton}>
-                注册
+                Sign Up
               </Link>
             </div>
           )}

@@ -47,7 +47,7 @@
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://your-rds-endpoint.mysql.rds.aliyuncs.com:3306/shoparro?...
+    url: jdbc:mysql://your-rds-endpoint.mysql.rds.aliyuncs.com:3306/southside_cart?...
     username: ${DB_USERNAME:your_username}  # 替换 your_username
     password: ${DB_PASSWORD:your_password}   # 替换 your_password
 ```
@@ -59,13 +59,13 @@ export DB_USERNAME=your_actual_username
 export DB_PASSWORD=your_actual_password
 export DB_HOST=your-rds-endpoint.mysql.rds.aliyuncs.com
 export DB_PORT=3306
-export DB_NAME=shoparro
+export DB_NAME=southside_cart
 ```
 
 ### 3. 在阿里云 RDS 中创建数据库
 
 ```sql
-CREATE DATABASE shoparro CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE southside_cart CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 ### 4. 配置白名单

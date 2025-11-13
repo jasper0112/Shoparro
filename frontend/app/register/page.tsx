@@ -27,12 +27,12 @@ export default function RegisterPage() {
 
   const validateForm = () => {
     if (formData.password.length < 6) {
-      setError('密码长度至少为 6 个字符')
+      setError('Password must be at least 6 characters long')
       return false
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError('两次输入的密码不一致')
+      setError('Passwords do not match')
       return false
     }
 
@@ -65,19 +65,19 @@ export default function RegisterPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || '注册失败，请稍后重试')
+        throw new Error(data.message || 'Registration failed. Please try again later.')
       }
 
-      // 注册成功后自动登录
+      // Automatically sign in after registration
       if (data.token) {
         localStorage.setItem('token', data.token)
         localStorage.setItem('user', JSON.stringify(data.user || {}))
       }
 
-      // 跳转到首页或登录页
+      // Navigate to the home page after registration
       router.push('/')
     } catch (err: any) {
-      setError(err.message || '注册失败，请稍后重试')
+      setError(err.message || 'Registration failed. Please try again later.')
     } finally {
       setLoading(false)
     }
@@ -87,8 +87,10 @@ export default function RegisterPage() {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1 className={styles.title}>创建账户</h1>
-          <p className={styles.subtitle}>加入 Shoparro，开始您的购物之旅</p>
+          <h1 className={styles.title}>Create Account</h1>
+          <p className={styles.subtitle}>
+            Join Southside Cart and start your shopping journey
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -96,7 +98,7 @@ export default function RegisterPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="name" className={styles.label}>
-              姓名
+              Name
             </label>
             <input
               type="text"
@@ -105,7 +107,7 @@ export default function RegisterPage() {
               value={formData.name}
               onChange={handleChange}
               className={styles.input}
-              placeholder="请输入您的姓名"
+              placeholder="Enter your name"
               required
               autoComplete="name"
             />
@@ -113,7 +115,7 @@ export default function RegisterPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
-              邮箱地址
+              Email address
             </label>
             <input
               type="email"
@@ -130,7 +132,7 @@ export default function RegisterPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.label}>
-              密码
+              Password
             </label>
             <input
               type="password"
@@ -139,7 +141,7 @@ export default function RegisterPage() {
               value={formData.password}
               onChange={handleChange}
               className={styles.input}
-              placeholder="至少 6 个字符"
+              placeholder="At least 6 characters"
               required
               autoComplete="new-password"
               minLength={6}
@@ -148,7 +150,7 @@ export default function RegisterPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="confirmPassword" className={styles.label}>
-              确认密码
+              Confirm password
             </label>
             <input
               type="password"
@@ -157,7 +159,7 @@ export default function RegisterPage() {
               value={formData.confirmPassword}
               onChange={handleChange}
               className={styles.input}
-              placeholder="请再次输入密码"
+              placeholder="Re-enter your password"
               required
               autoComplete="new-password"
               minLength={6}
@@ -169,15 +171,15 @@ export default function RegisterPage() {
             className={styles.submitButton}
             disabled={loading}
           >
-            {loading ? '注册中...' : '注册'}
+            {loading ? 'Signing up...' : 'Sign Up'}
           </button>
         </form>
 
         <div className={styles.footer}>
           <p>
-            已有账户？{' '}
+            Already have an account?{' '}
             <Link href="/login" className={styles.link}>
-              立即登录
+              Sign in now
             </Link>
           </p>
         </div>

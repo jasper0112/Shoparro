@@ -11,8 +11,8 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
-    // TODO: 实现添加到购物车功能
-    alert(`已将 ${product.name} 添加到购物车`)
+    // TODO: Implement add-to-cart functionality
+    alert(`Added ${product.name} to the cart`)
   }
 
   return (
@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
         {product.stock === 0 && (
-          <div className={styles.outOfStock}>缺货</div>
+          <div className={styles.outOfStock}>Out of stock</div>
         )}
       </div>
       <div className={styles.content}>
@@ -40,7 +40,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className={styles.priceSection}>
             <span className={styles.price}>${product.price.toFixed(2)}</span>
             {product.stock > 0 && (
-              <span className={styles.stock}>库存: {product.stock}</span>
+              <span className={styles.stock}>Stock: {product.stock}</span>
             )}
           </div>
           <button
@@ -48,7 +48,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className={styles.addButton}
             disabled={product.stock === 0}
           >
-            {product.stock === 0 ? '缺货' : '加入购物车'}
+            {product.stock === 0 ? 'Out of stock' : 'Add to cart'}
           </button>
         </div>
       </div>

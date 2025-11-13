@@ -1,4 +1,4 @@
-# Shoparro 项目检测报告
+# Southside Cart 项目检测报告
 
 **检测时间**: 2025年1月
 **项目类型**: 全栈电商平台 (Spring Boot + Next.js)
@@ -7,7 +7,7 @@
 
 ## 📊 项目概览
 
-**项目名称**: Shoparro  
+**项目名称**: Southside Cart  
 **目标**: 为澳大利亚中小企业提供电商平台解决方案  
 **技术栈**: 
 - 后端: Spring Boot (Java)

@@ -40,16 +40,18 @@ export default function LoginPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || '登录失败，请检查您的邮箱和密码')
+        throw new Error(
+          data.message || 'Login failed. Please check your email and password.'
+        )
       }
 
-      // 保存 token 到 localStorage
+      // Save the token to localStorage
       if (data.token) {
         localStorage.setItem('token', data.token)
         localStorage.setItem('user', JSON.stringify(data.user || {}))
       }
 
-      // 根据用户角色跳转
+      // Redirect based on the user role
       const userRole = data.user?.role || 'CUSTOMER'
       if (userRole === 'ADMIN' || userRole === 'MERCHANT') {
         router.push('/admin')
@@ -57,7 +59,7 @@ export default function LoginPage() {
         router.push('/')
       }
     } catch (err: any) {
-      setError(err.message || '登录失败，请稍后重试')
+      setError(err.message || 'Login failed. Please try again later.')
     } finally {
       setLoading(false)
     }
@@ -67,8 +69,10 @@ export default function LoginPage() {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1 className={styles.title}>欢迎回来</h1>
-          <p className={styles.subtitle}>登录您的 Shoparro 账户</p>
+          <h1 className={styles.title}>Welcome Back</h1>
+          <p className={styles.subtitle}>
+            Sign in to your Southside Cart account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -76,7 +80,7 @@ export default function LoginPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
-              邮箱地址
+              Email address
             </label>
             <input
               type="email"
@@ -93,7 +97,7 @@ export default function LoginPage() {
 
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.label}>
-              密码
+              Password
             </label>
             <input
               type="password"
@@ -102,7 +106,7 @@ export default function LoginPage() {
               value={formData.password}
               onChange={handleChange}
               className={styles.input}
-              placeholder="请输入您的密码"
+              placeholder="Enter your password"
               required
               autoComplete="current-password"
             />
@@ -113,15 +117,15 @@ export default function LoginPage() {
             className={styles.submitButton}
             disabled={loading}
           >
-            {loading ? '登录中...' : '登录'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
 
         <div className={styles.footer}>
           <p>
-            还没有账户？{' '}
+            Don't have an account?{' '}
             <Link href="/register" className={styles.link}>
-              立即注册
+              Sign up now
             </Link>
           </p>
         </div>

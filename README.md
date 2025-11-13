@@ -1,8 +1,8 @@
 This is a web application for e-commerce platform using by small or medium size business owners to showcase and sell theirs products.
 
-# 🛒 Shoparro — E-Commerce Platform for Australian SMEs
+# 🛒 Southside Cart — E-Commerce Platform for Australian SMEs
 
-**Shoparro** is a full-stack web application built to empower small and medium-sized businesses in Australia to sell their products online with ease. It provides a seamless experience for both store owners and customers—from product management to order placement.
+**Southside Cart** is a full-stack web application built to empower small and medium-sized businesses in Australia to sell their products online with ease. It provides a seamless experience for both store owners and customers—from product management to order placement.
 
 ---
 
@@ -41,8 +41,8 @@ This is a web application for e-commerce platform using by small or medium size 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/shoparro.git
-cd shoparro
+git clone https://github.com/your-username/southside-cart.git
+cd southside-cart
 ````
 
 ### 2. Setup Frontend
@@ -76,7 +76,7 @@ cd backend
 ## 🗂 Project Structure
 
 ```
-shoparro/
+southside-cart/
 │
 ├── frontend/              # Next.js frontend (TypeScript)
 │   ├── app/
@@ -105,7 +105,7 @@ shoparro/
 ## 📄 License
 
 MIT License.
-© 2025 \[Your Name] — Shoparro
+© 2025 \[Your Name] — Southside Cart
 
 ---
 

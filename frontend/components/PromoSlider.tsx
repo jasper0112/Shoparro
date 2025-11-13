@@ -19,27 +19,29 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     id: 'new-arrivals',
-    title: '新品限时 8 折',
-    description: '挑选本周上架的精选产品，优惠今晚截止！',
-    ctaText: '去逛逛',
+    title: 'New Arrivals: 20% Off',
+    description:
+      "Browse this week's curated products - the sale ends tonight!",
+    ctaText: 'Shop Now',
     href: '/products?filter=new',
     tag: 'Hot',
     theme: 'violet',
   },
   {
     id: 'free-shipping',
-    title: '全场免邮',
-    description: '订单满 $99 自动免邮，全国范围都可配送。',
-    ctaText: '了解详情',
+    title: 'Free Shipping on Everything',
+    description:
+      'Spend $99 or more and automatically unlock free delivery nationwide.',
+    ctaText: 'Learn More',
     href: '/promotions/free-shipping',
     tag: 'Free',
     theme: 'teal',
   },
   {
     id: 'bundle',
-    title: '组合套餐立省 $30',
-    description: '购买任意两件组合商品，结账自动减免。',
-    ctaText: '马上搭配',
+    title: 'Bundle & Save $30',
+    description: 'Pick any two bundle items and save instantly at checkout.',
+    ctaText: 'Build a Bundle',
     href: '/bundles',
     tag: 'Sale',
     theme: 'amber',
@@ -85,9 +87,9 @@ export default function PromoSlider() {
         type="button"
         className={styles.fab}
         onClick={() => setIsCollapsed(false)}
-        aria-label="展开优惠推荐"
+        aria-label="Expand promotions"
       >
-        🔔 优惠推荐
+        🔔 Promotions
       </button>
     )
   }
@@ -106,7 +108,7 @@ export default function PromoSlider() {
             type="button"
             className={styles.closeButton}
             onClick={() => setIsCollapsed(true)}
-            aria-label="隐藏优惠推荐"
+            aria-label="Hide promotions"
           >
             ✕
           </button>
@@ -123,7 +125,7 @@ export default function PromoSlider() {
               type="button"
               className={styles.navButton}
               onClick={handlePrev}
-              aria-label="上一条优惠"
+              aria-label="Previous promotion"
             >
               ‹
             </button>
@@ -136,7 +138,7 @@ export default function PromoSlider() {
                     index === activeIndex ? styles.activeDot : ''
                   }`}
                   onClick={() => setActiveIndex(index)}
-                  aria-label={`查看优惠 ${index + 1}`}
+                  aria-label={`View promotion ${index + 1}`}
                 />
               ))}
             </div>
@@ -144,7 +146,7 @@ export default function PromoSlider() {
               type="button"
               className={styles.navButton}
               onClick={handleNext}
-              aria-label="下一条优惠"
+              aria-label="Next promotion"
             >
               ›
             </button>

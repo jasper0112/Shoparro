@@ -6,7 +6,7 @@
 **服务器名称**: JasperD B  
 **主机地址**: 47.107.131.134  
 **端口**: 3306  
-**数据库名**: shoparro  
+**数据库名**: southside_cart  
 **用户名**: root  
 **密码**: jfq123 (已配置)
 
@@ -27,7 +27,7 @@
 ## 🔧 连接字符串
 
 ```
-jdbc:mysql://47.107.131.134:3306/shoparro?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true
+jdbc:mysql://47.107.131.134:3306/southside_cart?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true
 ```
 
 ## ⚠️ 安全建议
@@ -66,7 +66,7 @@ HikariPool-1 - Start completed.
 
 如果连接失败，检查：
 1. 阿里云 RDS 白名单是否包含您的 IP 地址
-2. 数据库 `shoparro` 是否已创建
+2. 数据库 `southside_cart` 是否已创建
 3. 用户名和密码是否正确
 4. 网络连接是否正常
 
@@ -75,7 +75,7 @@ HikariPool-1 - Start completed.
 连接到 MySQL 并执行：
 
 ```sql
-CREATE DATABASE IF NOT EXISTS shoparro 
+CREATE DATABASE IF NOT EXISTS southside_cart 
 CHARACTER SET utf8mb4 
 COLLATE utf8mb4_unicode_ci;
 ```

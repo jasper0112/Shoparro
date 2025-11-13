@@ -7,7 +7,7 @@
 在阿里云控制台中获取以下信息：
 - **数据库地址 (Endpoint)**: `your-rds-endpoint.mysql.rds.aliyuncs.com`
 - **端口**: 通常是 `3306`
-- **数据库名称**: 例如 `shoparro`
+- **数据库名称**: 例如 `southside_cart`
 - **用户名**: 您的数据库用户名
 - **密码**: 您的数据库密码
 
@@ -18,7 +18,7 @@
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://your-rds-endpoint.mysql.rds.aliyuncs.com:3306/shoparro?useSSL=true&requireSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true
+    url: jdbc:mysql://your-rds-endpoint.mysql.rds.aliyuncs.com:3306/southside_cart?useSSL=true&requireSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true
     username: your_username
     password: your_password
 ```
@@ -33,7 +33,7 @@ export DB_USERNAME=your_username
 export DB_PASSWORD=your_password
 export DB_HOST=your-rds-endpoint.mysql.rds.aliyuncs.com
 export DB_PORT=3306
-export DB_NAME=shoparro
+export DB_NAME=southside_cart
 ```
 
 **Windows:**
@@ -42,7 +42,7 @@ set DB_USERNAME=your_username
 set DB_PASSWORD=your_password
 set DB_HOST=your-rds-endpoint.mysql.rds.aliyuncs.com
 set DB_PORT=3306
-set DB_NAME=shoparro
+set DB_NAME=southside_cart
 ```
 
 然后在 `application.yml` 中使用：
@@ -59,7 +59,7 @@ spring:
 在阿里云 RDS 控制台或使用 MySQL 客户端创建数据库：
 
 ```sql
-CREATE DATABASE shoparro CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE southside_cart CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 ### 5. 配置白名单

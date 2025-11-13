@@ -1,4 +1,4 @@
-// API 调用相关的工具函数
+// Utility functions for API calls
 
 const API_BASE_URL = 'http://localhost:8080/api'
 
@@ -27,7 +27,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
     })
 
     if (!response.ok) {
-      throw new Error('获取产品列表失败')
+      throw new Error('Failed to fetch product list')
     }
 
     const data = await response.json()
@@ -48,7 +48,7 @@ export const fetchProductById = async (id: number): Promise<Product | null> => {
     })
 
     if (!response.ok) {
-      throw new Error('获取产品详情失败')
+      throw new Error('Failed to fetch product details')
     }
 
     return await response.json()

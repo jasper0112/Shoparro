@@ -22,37 +22,40 @@ interface CarouselProps {
 const defaultSlides: Slide[] = [
   {
     id: 1,
-    title: '新品上市',
-    description: '探索最新精选产品，享受限时优惠',
-    buttonText: '立即购买',
+    title: 'New Arrivals',
+    description: 'Explore the latest curated products with limited-time offers',
+    buttonText: 'Shop Now',
     link: '/products',
   },
   {
     id: 2,
-    title: '限时特惠',
-    description: '全场商品享受超值折扣，机会不容错过',
-    buttonText: '查看详情',
+    title: 'Limited-Time Deals',
+    description:
+      "Enjoy exceptional discounts across the store - don't miss out on the savings",
+    buttonText: 'View Details',
     link: '/products',
   },
   {
     id: 3,
-    title: '品质保证',
-    description: '精选优质商品，为您提供最佳购物体验',
-    buttonText: '开始购物',
+    title: 'Quality Guaranteed',
+    description:
+      'Handpicked premium goods to deliver the best shopping experience',
+    buttonText: 'Start Shopping',
     link: '/products',
   },
   {
     id: 4,
-    title: '会员专享',
-    description: '注册会员即可享受专属优惠和积分奖励',
-    buttonText: '加入会员',
+    title: 'Members Only',
+    description: 'Join now to unlock exclusive perks and reward points',
+    buttonText: 'Join Now',
     link: '/register',
   },
   {
     id: 5,
-    title: '快速配送',
-    description: '全国包邮，快速送达，让您购物更便捷',
-    buttonText: '立即下单',
+    title: 'Fast Delivery',
+    description:
+      'Nationwide shipping with speedy delivery for a smoother experience',
+    buttonText: 'Order Now',
     link: '/products',
   },
 ]
@@ -113,7 +116,7 @@ export default function Carousel({
               <p className={styles.slideDescription}>{slide.description}</p>
               {slide.link && (
                 <Link href={slide.link} className={styles.slideButton}>
-                  {slide.buttonText || '了解更多'}
+                  {slide.buttonText || 'Learn More'}
                 </Link>
               )}
             </div>
@@ -121,23 +124,23 @@ export default function Carousel({
         ))}
       </div>
 
-      {/* 导航按钮 */}
+      {/* Navigation buttons */}
       <button
         className={`${styles.navButton} ${styles.prevButton}`}
         onClick={goToPrevious}
-        aria-label="上一张"
+        aria-label="Previous slide"
       >
         ‹
       </button>
       <button
         className={`${styles.navButton} ${styles.nextButton}`}
         onClick={goToNext}
-        aria-label="下一张"
+        aria-label="Next slide"
       >
         ›
       </button>
 
-      {/* 指示器 */}
+      {/* Indicators */}
       <div className={styles.indicators}>
         {slides.map((_, index) => (
           <button
@@ -146,7 +149,7 @@ export default function Carousel({
               index === currentIndex ? styles.active : ''
             }`}
             onClick={() => goToSlide(index)}
-            aria-label={`跳转到第 ${index + 1} 张`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

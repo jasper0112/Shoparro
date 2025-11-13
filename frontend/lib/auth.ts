@@ -1,4 +1,4 @@
-// 认证相关的工具函数
+// Authentication utility functions
 
 export interface User {
   id: number

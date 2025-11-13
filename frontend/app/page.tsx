@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import ProductCard from '@/components/ProductCard'
-import PromoSlider from '@/components/PromoSlider'
 import Carousel from '@/components/Carousel'
 import { isAuthenticated } from '@/lib/auth'
 import { fetchProducts, type Product } from '@/lib/api'
@@ -17,13 +16,13 @@ export default function Home() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    // 检查用户是否已登录
+    // Check if user is authenticated
     if (!isAuthenticated()) {
       router.push('/login')
       return
     }
 
-    // 加载产品列表
+    // Load the product list
     loadProducts()
   }, [router])
 
@@ -33,14 +32,14 @@ export default function Home() {
       const data = await fetchProducts()
       setProducts(data)
     } catch (err: any) {
-      setError(err.message || '加载产品失败')
+      setError(err.message || 'Failed to load products')
     } finally {
       setLoading(false)
     }
   }
 
   if (!isAuthenticated()) {
-    return null // 等待重定向
+    return null // Wait for redirect
   }
 
   return (
@@ -49,9 +48,9 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.container}>
           <div className={styles.header}>
-            <h1 className={styles.title}>欢迎来到 Shoparro</h1>
+            <h1 className={styles.title}>Welcome to Southside Cart</h1>
             <p className={styles.subtitle}>
-              发现优质产品，享受购物乐趣
+              Discover quality products and enjoy shopping
             </p>
           </div>
 
@@ -60,18 +59,18 @@ export default function Home() {
           {loading ? (
             <div className={styles.loading}>
               <div className={styles.spinner}></div>
-              <p>加载中...</p>
+              <p>Loading...</p>
             </div>
           ) : error ? (
             <div className={styles.error}>
               <p>{error}</p>
               <button onClick={loadProducts} className={styles.retryButton}>
-                重试
+                Retry
               </button>
             </div>
           ) : products.length === 0 ? (
             <div className={styles.empty}>
-              <p>暂无产品</p>
+              <p>No products available</p>
             </div>
           ) : (
             <div className={styles.productsGrid}>
@@ -82,7 +81,6 @@ export default function Home() {
           )}
         </div>
       </main>
-      <PromoSlider />
     </>
   )
 }

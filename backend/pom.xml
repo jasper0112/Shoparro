@@ -15,7 +15,7 @@
     <groupId>com.shoparro</groupId>
     <artifactId>backend</artifactId>
     <version>1.0.0</version>
-    <name>Shoparro Backend</name>
+    <name>Southside Cart Backend</name>
     <description>E-commerce platform backend for Australian SMEs</description>
     
     <properties>
