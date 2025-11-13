@@ -142,8 +142,7 @@
   gap: 12px;
 }
 
-.loginButton,
-.registerButton {
+.loginButton {
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
@@ -160,15 +159,6 @@
 .loginButton:hover {
   background: #667eea;
   color: white;
-}
-
-.registerButton {
-  background: #667eea;
-  color: white;
-}
-
-.registerButton:hover {
-  background: #5568d3;
 }
 
 @media (max-width: 768px) {

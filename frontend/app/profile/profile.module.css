@@ -1,0 +1,412 @@
+.main {
+  background: #f7fafc;
+  min-height: calc(100vh - 80px);
+  padding: 48px 20px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #1a202c;
+}
+
+.subtitle {
+  margin: 0;
+  color: #4a5568;
+  font-size: 16px;
+}
+
+.saveButton {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #805ad5, #667eea);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.saveButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.saveButton:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.35);
+}
+
+.statusCard {
+  background: white;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 24px rgba(67, 56, 202, 0.08);
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #1a202c;
+}
+
+.sectionSubtitle {
+  margin: 0;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.avatarBlock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.avatarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarPlaceholder,
+.avatarImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf2f7;
+  font-size: 36px;
+}
+
+.avatarImage {
+  object-fit: cover;
+}
+
+.avatarButton {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #a0aec0;
+  background: white;
+  color: #2d3748;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.avatarButton:hover {
+  background: #2d3748;
+  color: white;
+}
+
+.avatarHint {
+  font-size: 13px;
+  color: #718096;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.field input,
+.field textarea {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 14px;
+  font-size: 15px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.accountsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accountRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.accountProvider {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  display: block;
+}
+
+.accountStatus {
+  font-size: 13px;
+  color: #0f766e;
+  margin-top: 4px;
+}
+
+.accountStatusMuted {
+  font-size: 13px;
+  color: #a0aec0;
+  margin-top: 4px;
+}
+
+.accountButton {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.accountButton:hover {
+  transform: translateY(-1px);
+}
+
+.accountDisconnect {
+  background: #e53e3e;
+}
+
+.toggleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid #edf2f7;
+  background: #f8fafc;
+}
+
+.toggleTitle {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.toggleDescription {
+  margin: 6px 0 0;
+  color: #4a5568;
+  font-size: 13px;
+  max-width: 440px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5f5;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.switch input:checked + .slider {
+  background-color: #667eea;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.securityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.securityCard {
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(129, 140, 248, 0.08));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.securityCard h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a202c;
+}
+
+.securityCard p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 14px;
+  flex: 1;
+}
+
+.secondaryButton,
+.primaryOutlineButton {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondaryButton {
+  background: #4a5568;
+  color: white;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(74, 85, 104, 0.3);
+}
+
+.primaryOutlineButton {
+  background: white;
+  color: #4338ca;
+  border: 1px solid #4338ca;
+}
+
+.primaryOutlineButton:hover {
+  background: #4338ca;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.28);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 32px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .securityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .toggleRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+}
+

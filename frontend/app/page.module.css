@@ -9,6 +9,12 @@
   margin: 0 auto;
 }
 
+.topSection {
+  display: grid;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
 .header {
   text-align: center;
   margin-bottom: 40px;
@@ -24,6 +30,210 @@
 .subtitle {
   font-size: 18px;
   color: #718096;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.metricCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricLabel {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.metricValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.categoriesSection {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+}
+
+.section {
+  margin-bottom: 56px;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 8px;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  color: #4a5568;
+  margin: 0;
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.categoryCard {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.18);
+}
+
+.categoryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.categoryDescription {
+  font-size: 15px;
+  color: #4a5568;
+  margin: 0;
+  flex: 1;
+}
+
+.categoryCta {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #1a202c;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.categoryCta:hover {
+  background: #2d3748;
+  transform: translateY(-1px);
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.benefitCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(149, 156, 182, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benefitTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.benefitDescription {
+  font-size: 15px;
+  color: #4a5568;
+  margin: 0;
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filterButton {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #1a202c;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+.filterButton:hover {
+  border-color: #a0aec0;
+}
+
+.filterButtonActive {
+  background: #1a202c;
+  color: white;
+  border-color: #1a202c;
+}
+
+.sectionCta {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #edf2f7;
+  color: #1a202c;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.sectionCta:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
 }
 
 .productsGrid {
@@ -86,6 +296,16 @@
   font-size: 18px;
 }
 
+.emptyState {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 24px;
+  text-align: center;
+  color: #4a5568;
+  font-size: 16px;
+  box-shadow: inset 0 0 0 1px #edf2f7;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 28px;
@@ -98,6 +318,19 @@
   .productsGrid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
+  }
+
+  .filterBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 

@@ -78,9 +78,6 @@ export default function Navbar() {
               <Link href="/login" className={styles.loginButton}>
                 Sign In
               </Link>
-              <Link href="/register" className={styles.registerButton}>
-                Sign Up
-              </Link>
             </div>
           )}
         </div>
