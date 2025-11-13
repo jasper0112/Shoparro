@@ -1,0 +1,189 @@
+.navbar {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.search {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  gap: 8px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #667eea;
+}
+
+.searchButton {
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.searchButton:hover {
+  background: #5568d3;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.userName {
+  font-size: 14px;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.userMenu {
+  position: relative;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #667eea;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.menuItem {
+  display: block;
+  padding: 12px 16px;
+  color: #2d3748;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #f7fafc;
+}
+
+.cartButton {
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cartButton:hover {
+  background: #5568d3;
+}
+
+.authButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.loginButton,
+.registerButton {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.loginButton {
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.loginButton:hover {
+  background: #667eea;
+  color: white;
+}
+
+.registerButton {
+  background: #667eea;
+  color: white;
+}
+
+.registerButton:hover {
+  background: #5568d3;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+}
+
