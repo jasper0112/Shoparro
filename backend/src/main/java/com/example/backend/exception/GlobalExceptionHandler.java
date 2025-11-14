@@ -1,5 +1,12 @@
 package com.example.backend.exception;
 
+import com.example.backend.order.exception.OrderCreationException;
+import com.example.backend.order.exception.OrderNotFoundException;
+import com.example.backend.order.exception.OrderStatusException;
+import com.example.backend.order.exception.PaymentProcessingException;
+import com.example.backend.product.exception.InsufficientStockException;
+import com.example.backend.product.exception.ProductNotFoundException;
+import com.example.backend.product.exception.UnauthorizedProductAccessException;
 import com.example.backend.user.exception.InvalidCredentialsException;
 import com.example.backend.user.exception.UserAlreadyExistsException;
 import com.example.backend.user.exception.UserNotFoundException;
@@ -47,6 +54,76 @@ public class GlobalExceptionHandler {
         Map<String, String> error = new HashMap<>();
         error.put("message", e.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+    }
+    
+    /**
+     * 处理商品未找到异常
+     */
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleProductNotFoundException(ProductNotFoundException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+    
+    /**
+     * 处理未授权访问商品异常
+     */
+    @ExceptionHandler(UnauthorizedProductAccessException.class)
+    public ResponseEntity<Map<String, String>> handleUnauthorizedProductAccessException(UnauthorizedProductAccessException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+    
+    /**
+     * 处理库存不足异常
+     */
+    @ExceptionHandler(InsufficientStockException.class)
+    public ResponseEntity<Map<String, String>> handleInsufficientStockException(InsufficientStockException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    /**
+     * 处理订单未找到异常
+     */
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleOrderNotFoundException(OrderNotFoundException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    /**
+     * 处理订单创建异常
+     */
+    @ExceptionHandler(OrderCreationException.class)
+    public ResponseEntity<Map<String, String>> handleOrderCreationException(OrderCreationException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    /**
+     * 处理订单状态异常
+     */
+    @ExceptionHandler(OrderStatusException.class)
+    public ResponseEntity<Map<String, String>> handleOrderStatusException(OrderStatusException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    /**
+     * 处理支付处理异常
+     */
+    @ExceptionHandler(PaymentProcessingException.class)
+    public ResponseEntity<Map<String, String>> handlePaymentProcessingException(PaymentProcessingException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
     
     /**
