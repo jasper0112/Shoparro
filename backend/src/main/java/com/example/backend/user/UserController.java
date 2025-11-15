@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.auth.JwtUtil;
 import com.example.backend.user.dto.LoginRequest;
 import com.example.backend.user.dto.RegisterRequest;
 import com.example.backend.user.dto.UpdateUserRequest;
@@ -27,6 +28,9 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private JwtUtil jwtUtil;
     
     /**
      * 用户注册
@@ -56,10 +60,11 @@ public class UserController {
             User user = userService.validateLogin(request);
             UserResponse userResponse = UserResponse.fromUser(user);
             
-            // 这里应该生成JWT token，暂时返回用户信息
-            // TODO: 集成JWT token生成
+            // 生成JWT token
+            String token = jwtUtil.generateToken(user.getId(), user.getEmail(), user.getRole().name());
+            
             Map<String, Object> response = new HashMap<>();
-            response.put("token", "jwt-token-placeholder"); // 后续需要实现JWT
+            response.put("token", token);
             response.put("user", userResponse);
             
             return ResponseEntity.ok(response);
