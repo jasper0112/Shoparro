@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar'
 import ProductCard from '@/components/ProductCard'
 import Carousel from '@/components/Carousel'
 import { isAuthenticated } from '@/lib/auth'
-import { fetchProducts, type Product } from '@/lib/api'
+import { getActiveProducts, type Product } from '@/lib/api'
 import styles from './page.module.css'
 
 const QUICK_FILTERS = [
@@ -81,8 +81,8 @@ export default function Home() {
   const loadProducts = async () => {
     try {
       setLoading(true)
-      const data = await fetchProducts()
-      setProducts(data)
+      const response = await getActiveProducts(0, 100)
+      setProducts(response.content)
     } catch (err: any) {
       setError(err.message || 'Failed to load products')
     } finally {
