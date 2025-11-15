@@ -45,10 +45,12 @@ export default function LoginPage() {
         )
       }
 
-      // Save the token to localStorage
+      // Save the token and user to localStorage
       if (data.token) {
         localStorage.setItem('token', data.token)
-        localStorage.setItem('user', JSON.stringify(data.user || {}))
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user))
+        }
       }
 
       // Redirect based on the user role

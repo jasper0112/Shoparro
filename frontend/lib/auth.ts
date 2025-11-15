@@ -2,9 +2,23 @@
 
 export interface User {
   id: number
-  name: string
+  username: string
   email: string
+  firstName?: string
+  lastName?: string
+  phone?: string
   role: string
+  address?: string
+  city?: string
+  postcode?: string
+  country?: string
+  businessName?: string
+  businessLicense?: string
+  businessDescription?: string
+  enabled?: boolean
+  createdAt?: string
+  updatedAt?: string
+  lastLoginAt?: string
 }
 
 export const getToken = (): string | null => {
@@ -39,5 +53,16 @@ export const getAuthHeaders = (): HeadersInit => {
     'Content-Type': 'application/json',
     ...(token && { Authorization: `Bearer ${token}` }),
   }
+}
+
+// Helper to get display name
+export const getDisplayName = (user: User | null): string => {
+  if (!user) return 'User'
+  if (user.firstName && user.lastName) {
+    return `${user.firstName} ${user.lastName}`
+  }
+  if (user.firstName) return user.firstName
+  if (user.username) return user.username
+  return user.email
 }
 

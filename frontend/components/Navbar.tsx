@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { getUser, logout, isAuthenticated } from '@/lib/auth'
+import { getUser, logout, isAuthenticated, getDisplayName } from '@/lib/auth'
 import type { User } from '@/lib/auth'
 import styles from './Navbar.module.css'
 
@@ -43,7 +43,7 @@ export default function Navbar() {
           {user ? (
             <>
               <div className={styles.userInfo}>
-                <span className={styles.userName}>👤 {user.name}</span>
+                <span className={styles.userName}>👤 {getDisplayName(user)}</span>
                 <div className={styles.userMenu}>
                   <button
                     className={styles.menuButton}

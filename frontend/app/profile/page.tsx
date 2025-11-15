@@ -4,18 +4,23 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import { getUser, isAuthenticated } from '@/lib/auth'
+import { getUserById, updateUser } from '@/lib/api'
 import type { User } from '@/lib/auth'
 import styles from './profile.module.css'
 
 interface ProfileData {
-  name: string
+  username: string
   email: string
+  firstName: string
+  lastName: string
   phone: string
-  bio: string
-  company: string
-  jobTitle: string
-  location: string
-  website: string
+  address: string
+  city: string
+  postcode: string
+  country: string
+  businessName: string
+  businessLicense: string
+  businessDescription: string
 }
 
 interface LinkedAccount {
@@ -26,14 +31,18 @@ interface LinkedAccount {
 }
 
 const DEFAULT_PROFILE: ProfileData = {
-  name: '',
+  username: '',
   email: '',
+  firstName: '',
+  lastName: '',
   phone: '',
-  bio: '',
-  company: '',
-  jobTitle: '',
-  location: '',
-  website: '',
+  address: '',
+  city: '',
+  postcode: '',
+  country: '',
+  businessName: '',
+  businessLicense: '',
+  businessDescription: '',
 }
 
 const LINKED_ACCOUNT_OPTIONS: LinkedAccount[] = [
@@ -61,6 +70,7 @@ export default function UserProfilePage() {
   })
   const [authChecked, setAuthChecked] = useState(false)
   const [isAuthed, setIsAuthed] = useState(false)
+  const [currentUserId, setCurrentUserId] = useState<number | null>(null)
 
   useEffect(() => {
     const authed = isAuthenticated()
@@ -71,14 +81,53 @@ export default function UserProfilePage() {
       return
     }
 
-    const currentUser = getUser()
-    if (currentUser) {
-      setProfile((prev) => ({
-        ...prev,
-        name: currentUser.name ?? '',
-        email: currentUser.email ?? '',
-      }))
+    const loadUserData = async () => {
+      const currentUser = getUser()
+      if (currentUser && currentUser.id) {
+        setCurrentUserId(currentUser.id)
+        try {
+          // Fetch fresh user data from backend
+          const userData = await getUserById(currentUser.id)
+          setProfile({
+            username: userData.username || '',
+            email: userData.email || '',
+            firstName: userData.firstName || '',
+            lastName: userData.lastName || '',
+            phone: userData.phone || '',
+            address: userData.address || '',
+            city: userData.city || '',
+            postcode: userData.postcode || '',
+            country: userData.country || '',
+            businessName: userData.businessName || '',
+            businessLicense: userData.businessLicense || '',
+            businessDescription: userData.businessDescription || '',
+          })
+          // Update localStorage with fresh data
+          localStorage.setItem('user', JSON.stringify(userData))
+        } catch (error) {
+          console.error('Error loading user data:', error)
+          // Fallback to localStorage data
+          if (currentUser) {
+            setProfile({
+              username: currentUser.username || '',
+              email: currentUser.email || '',
+              firstName: currentUser.firstName || '',
+              lastName: currentUser.lastName || '',
+              phone: currentUser.phone || '',
+              address: currentUser.address || '',
+              city: currentUser.city || '',
+              postcode: currentUser.postcode || '',
+              country: currentUser.country || '',
+              businessName: currentUser.businessName || '',
+              businessLicense: currentUser.businessLicense || '',
+              businessDescription: currentUser.businessDescription || '',
+            })
+          }
+        }
+      }
     }
+
+    loadUserData()
   }, [router])
 
   const handleProfileChange = (
@@ -136,26 +185,38 @@ export default function UserProfilePage() {
   }
 
   const handleSave = async () => {
+    if (!currentUserId) {
+      setStatusMessage('User ID not found. Please login again.')
+      return
+    }
+
     setIsSaving(true)
     setStatusMessage(null)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200))
-      setStatusMessage('Profile changes saved successfully.')
-      if (typeof window !== 'undefined') {
-        const existingUser = getUser()
-        if (existingUser) {
-          const updatedUser: User = {
-            ...existingUser,
-            name: profile.name,
-            email: profile.email,
-          }
-          localStorage.setItem('user', JSON.stringify(updatedUser))
-        }
+      const updateData = {
+        username: profile.username,
+        email: profile.email,
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        phone: profile.phone,
+        address: profile.address,
+        city: profile.city,
+        postcode: profile.postcode,
+        country: profile.country,
+        businessName: profile.businessName,
+        businessLicense: profile.businessLicense,
+        businessDescription: profile.businessDescription,
       }
-    } catch (error) {
+
+      const updatedUser = await updateUser(currentUserId, updateData)
+      setStatusMessage('Profile changes saved successfully.')
+      
+      // Update localStorage with fresh data
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+    } catch (error: any) {
       console.error('Error saving profile', error)
-      setStatusMessage('Something went wrong while saving your profile.')
+      setStatusMessage(error.message || 'Something went wrong while saving your profile.')
     } finally {
       setIsSaving(false)
     }
@@ -241,13 +302,16 @@ export default function UserProfilePage() {
 
               <div className={styles.grid}>
                 <label className={styles.field}>
-                  <span className={styles.label}>Full name</span>
+                  <span className={styles.label}>Username</span>
                   <input
                     type="text"
-                    name="name"
-                    value={profile.name}
+                    name="username"
+                    value={profile.username}
                     onChange={handleProfileChange}
-                    placeholder="Enter your full name"
+                    placeholder="Enter your username"
+                    required
+                    minLength={3}
+                    maxLength={50}
                   />
                 </label>
 
@@ -259,6 +323,29 @@ export default function UserProfilePage() {
                     value={profile.email}
                     onChange={handleProfileChange}
                     placeholder="name@example.com"
+                    required
+                  />
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>First name</span>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={profile.firstName}
+                    onChange={handleProfileChange}
+                    placeholder="Enter your first name"
+                  />
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>Last name</span>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={profile.lastName}
+                    onChange={handleProfileChange}
+                    placeholder="Enter your last name"
                   />
                 </label>
 
@@ -274,27 +361,49 @@ export default function UserProfilePage() {
                 </label>
 
                 <label className={styles.field}>
-                  <span className={styles.label}>Location</span>
+                  <span className={styles.label}>Address</span>
                   <input
                     type="text"
-                    name="location"
-                    value={profile.location}
+                    name="address"
+                    value={profile.address}
                     onChange={handleProfileChange}
-                    placeholder="City, Country"
+                    placeholder="Street address"
+                  />
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>City</span>
+                  <input
+                    type="text"
+                    name="city"
+                    value={profile.city}
+                    onChange={handleProfileChange}
+                    placeholder="City"
+                  />
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>Postcode</span>
+                  <input
+                    type="text"
+                    name="postcode"
+                    value={profile.postcode}
+                    onChange={handleProfileChange}
+                    placeholder="Postcode"
+                  />
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>Country</span>
+                  <input
+                    type="text"
+                    name="country"
+                    value={profile.country}
+                    onChange={handleProfileChange}
+                    placeholder="Country"
                   />
                 </label>
               </div>
-
-              <label className={styles.field}>
-                <span className={styles.label}>About</span>
-                <textarea
-                  name="bio"
-                  value={profile.bio}
-                  onChange={handleProfileChange}
-                  placeholder="Tell other shoppers more about yourself."
-                  rows={4}
-                />
-              </label>
             </div>
           </section>
 
@@ -307,38 +416,38 @@ export default function UserProfilePage() {
             <div className={styles.card}>
               <div className={styles.grid}>
                 <label className={styles.field}>
-                  <span className={styles.label}>Company</span>
+                  <span className={styles.label}>Business name</span>
                   <input
                     type="text"
-                    name="company"
-                    value={profile.company}
+                    name="businessName"
+                    value={profile.businessName}
                     onChange={handleProfileChange}
-                    placeholder="Your company or store name"
+                    placeholder="Your business or store name"
                   />
                 </label>
 
                 <label className={styles.field}>
-                  <span className={styles.label}>Job title</span>
+                  <span className={styles.label}>Business license</span>
                   <input
                     type="text"
-                    name="jobTitle"
-                    value={profile.jobTitle}
+                    name="businessLicense"
+                    value={profile.businessLicense}
                     onChange={handleProfileChange}
-                    placeholder="E.g. Founder, Buyer, Brand Manager"
-                  />
-                </label>
-
-                <label className={styles.field}>
-                  <span className={styles.label}>Website</span>
-                  <input
-                    type="url"
-                    name="website"
-                    value={profile.website}
-                    onChange={handleProfileChange}
-                    placeholder="https://example.com"
+                    placeholder="ABN or business license number"
                   />
                 </label>
               </div>
+
+              <label className={styles.field}>
+                <span className={styles.label}>Business description</span>
+                <textarea
+                  name="businessDescription"
+                  value={profile.businessDescription}
+                  onChange={handleProfileChange}
+                  placeholder="Describe your business"
+                  rows={4}
+                />
+              </label>
             </div>
           </section>
 

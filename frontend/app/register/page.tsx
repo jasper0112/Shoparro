@@ -8,7 +8,7 @@ import styles from './register.module.css'
 export default function RegisterPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -56,7 +56,7 @@ export default function RegisterPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
+          username: formData.username,
           email: formData.email,
           password: formData.password,
         }),
@@ -68,10 +68,27 @@ export default function RegisterPage() {
         throw new Error(data.message || 'Registration failed. Please try again later.')
       }
 
-      // Automatically sign in after registration
-      if (data.token) {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user', JSON.stringify(data.user || {}))
+      // After registration, automatically login to get token
+      const loginResponse = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      })
+
+      if (loginResponse.ok) {
+        const loginData = await loginResponse.json()
+        if (loginData.token) {
+          localStorage.setItem('token', loginData.token)
+          localStorage.setItem('user', JSON.stringify(loginData.user || data))
+        }
+      } else {
+        // If auto-login fails, just save the user data
+        localStorage.setItem('user', JSON.stringify(data))
       }
 
       // Navigate to the home page after registration
@@ -97,19 +114,21 @@ export default function RegisterPage() {
           {error && <div className={styles.error}>{error}</div>}
 
           <div className={styles.formGroup}>
-            <label htmlFor="name" className={styles.label}>
-              Name
+            <label htmlFor="username" className={styles.label}>
+              Username
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className={styles.input}
-              placeholder="Enter your name"
+              placeholder="Choose a username (3-50 characters)"
               required
-              autoComplete="name"
+              minLength={3}
+              maxLength={50}
+              autoComplete="username"
             />
           </div>
 
